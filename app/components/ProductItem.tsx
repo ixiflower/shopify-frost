@@ -26,19 +26,24 @@ export function ProductItem({
       prefetch="intent"
       to={variantUrl}
     >
-      {image && (
-        <Image
-          alt={image.altText || product.title}
-          aspectRatio="1/1"
-          data={image}
-          loading={loading}
-          sizes="(min-width: 45em) 400px, 100vw"
-        />
-      )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <div className="product-item-image-wrap">
+        {image && (
+          <Image
+            alt={image.altText || product.title}
+            aspectRatio="1/1"
+            data={image}
+            loading={loading}
+            sizes="(min-width: 45em) 400px, 100vw"
+          />
+        )}
+      </div>
+      <div className="product-item-info">
+        <h4 className="product-item-title">{product.title}</h4>
+        <p className="product-item-desc">{(product as any).description || 'Premium quality product crafted with care.'}</p>
+        <span className="product-item-price">
+          <Money data={product.priceRange.minVariantPrice} />
+        </span>
+      </div>
     </Link>
   );
 }
