@@ -48,6 +48,8 @@ shopify hydrogen dev
 
 ## 🛠 Tech Stack
 
+<div align="center">
+
 | Layer | Technology |
 |-------|-----------|
 | **Framework** | Hydrogen (React Router v7) |
@@ -56,7 +58,11 @@ shopify hydrogen dev
 | **Build** | Vite + Shopify CLI |
 | **Language** | TypeScript |
 
+</div>
+
 ## 📂 Project Structure
+
+<div align="center">
 
 ```
 app/
@@ -75,13 +81,47 @@ app/
     └── app.css     # All custom styles
 ```
 
+</div>
+
 ## 🔑 Environment
+
+<div align="center">
 
 ```env
 PUBLIC_STORE_DOMAIN=your-store.myshopify.com
 PUBLIC_STOREFRONT_API_TOKEN=your-token
 ```
 
+</div>
+
 ## 📄 License
 
-MIT
+<div align="center">
+
+```
+
+MIT License
+
+Copyright (c) 2026 ixiflower
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
+</div>
