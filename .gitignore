@@ -11,3 +11,4 @@ node_modules
 bun.lock
 tsconfig.tsbuildinfo
 faviconsmalll.png
+.vercel

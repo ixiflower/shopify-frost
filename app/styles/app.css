@@ -782,6 +782,12 @@ button.reset:hover:not(:has(> *)) {
   transform: scale(1.05);
 }
 
+.featured-collection-placeholder-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 .featured-collection-content {
   position: absolute;
   inset: 0;
@@ -1477,6 +1483,12 @@ button.reset:hover:not(:has(> *)) {
 
 .collection-card-home:hover .collection-card-home-image img {
   transform: scale(1.08);
+}
+
+.collection-card-placeholder-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
 .collection-card-home-overlay {

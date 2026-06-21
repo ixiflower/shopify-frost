@@ -11,14 +11,41 @@ import {
   useRouteLoaderData,
 } from 'react-router';
 import type {Route} from './+types/root';
+import type {MiddlewareFunction} from 'react-router';
 import favicon from '~/assets/favicon.png';
 import {FOOTER_QUERY, HEADER_QUERY} from '~/lib/fragments';
 import resetStyles from '~/styles/reset.css?url';
 import appStyles from '~/styles/app.css?url';
 import tailwindCss from './styles/tailwind.css?url';
 import {PageLayout} from './components/PageLayout';
+import {createHydrogenRouterContext} from '~/lib/context';
 
 export type RootLoader = typeof loader;
+
+export const middleware: MiddlewareFunction[] = [
+  async ({request, context}, next) => {
+    const env = {
+      SESSION_SECRET: process.env.SESSION_SECRET ?? '',
+      PUBLIC_STOREFRONT_API_TOKEN: process.env.PUBLIC_STOREFRONT_API_TOKEN ?? '',
+      PRIVATE_STOREFRONT_API_TOKEN: process.env.PRIVATE_STOREFRONT_API_TOKEN ?? '',
+      PUBLIC_STORE_DOMAIN: process.env.PUBLIC_STORE_DOMAIN ?? '',
+      PUBLIC_STOREFRONT_ID: process.env.PUBLIC_STOREFRONT_ID ?? '',
+      PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID: process.env.PUBLIC_CUSTOMER_ACCOUNT_API_CLIENT_ID ?? '',
+      PUBLIC_CUSTOMER_ACCOUNT_API_URL: process.env.PUBLIC_CUSTOMER_ACCOUNT_API_URL ?? '',
+      PUBLIC_CHECKOUT_DOMAIN: process.env.PUBLIC_CHECKOUT_DOMAIN ?? '',
+      SHOP_ID: process.env.SHOP_ID ?? '',
+    };
+    const h2 = await createHydrogenRouterContext(request, env);
+    const ctx = context as unknown as Record<string, unknown>;
+    ctx.storefront = h2.storefront;
+    ctx.cart = h2.cart;
+    ctx.customerAccount = h2.customerAccount;
+    ctx.env = h2.env;
+    ctx.session = h2.session;
+    ctx.waitUntil = h2.waitUntil ?? (() => {});
+    return next();
+  },
+];
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations

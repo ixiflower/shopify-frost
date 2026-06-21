@@ -19,18 +19,21 @@ export async function loader(args: Route.LoaderArgs) {
 }
 
 async function loadCriticalData({context}: Route.LoaderArgs) {
-  const [featuredData, arrivalsData] = await Promise.all([
+  const [featuredData, arrivalsData, shopData] = await Promise.all([
     context.storefront.query(FEATURED_COLLECTION_QUERY).catch(() => null),
     context.storefront.query(NEW_ARRIVALS_QUERY).catch(() => null),
+    context.storefront.query(SHOP_HERO_QUERY).catch(() => null),
   ]);
 
   const collections = featuredData?.collections?.nodes || [];
   const arrivals = arrivalsData?.products?.nodes || [];
+  const heroImage = shopData?.shop?.heroImage?.reference?.image;
 
   return {
     featuredCollection: collections[0],
     featuredCollections: collections,
     newArrivals: arrivals.slice(0, 4),
+    heroImage,
   };
 }
 
@@ -51,7 +54,7 @@ export default function Homepage() {
   const data = useLoaderData<typeof loader>();
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
+      <FeaturedCollection collection={data.featuredCollection} heroImage={data.heroImage} />
       <CollectionsGrid collections={data.featuredCollections} />
       <PromoBanner />
       <WhyChooseUs />
@@ -66,22 +69,26 @@ export default function Homepage() {
 
 function FeaturedCollection({
   collection,
+  heroImage,
 }: {
   collection: FeaturedCollectionFragment;
+  heroImage?: FeaturedCollectionFragment["image"];
 }) {
   if (!collection) return null;
-  const image = collection?.image;
+  const image = heroImage || collection?.image;
   return (
     <Link
       className="featured-collection"
       to={`/collections/${collection.handle}`}
     >
-      {image && (
-        <div className="featured-collection-image">
-          <div className="featured-collection-overlay" />
+      <div className="featured-collection-image">
+        <div className="featured-collection-overlay" />
+        {image ? (
           <Image data={image} sizes="100vw" />
-        </div>
-      )}
+        ) : (
+          <div className="featured-collection-placeholder-bg" />
+        )}
+      </div>
       <div className="featured-collection-content">
         <p className="featured-collection-badge">New Collection</p>
         <h1 className="featured-collection-hero-title">Discover Your Style</h1>
@@ -112,12 +119,14 @@ function CollectionsGrid({
             to={`/collections/${col.handle}`}
             className="collection-card-home"
           >
-            {col.image && (
-              <div className="collection-card-home-image">
-                <div className="collection-card-home-overlay" />
+            <div className="collection-card-home-image">
+              <div className="collection-card-home-overlay" />
+              {col.image ? (
                 <Image data={col.image} sizes="(min-width: 45em) 25vw, 50vw" />
-              </div>
-            )}
+              ) : (
+                <div className="collection-card-placeholder-bg" />
+              )}
+            </div>
             <div className="collection-card-home-content">
               <h3>{col.title}</h3>
               <span className="collection-card-home-link">Explore →</span>
@@ -464,6 +473,27 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     products(first: 4, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...RecommendedProduct
+      }
+    }
+  }
+` as const;
+
+const SHOP_HERO_QUERY = `#graphql
+  query ShopHero($country: CountryCode, $language: LanguageCode)
+    @inContext(country: $country, language: $language) {
+    shop {
+      heroImage: metafield(namespace: "custom", key: "hero_image") {
+        reference {
+          ... on MediaImage {
+            image {
+              id
+              url
+              altText
+              width
+              height
+            }
+          }
+        }
       }
     }
   }

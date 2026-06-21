@@ -1,0 +1,6 @@
+{
+  "framework": "react-router",
+  "buildCommand": "npx react-router build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install"
+}
