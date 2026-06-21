@@ -138,26 +138,6 @@ function CollectionsGrid({
             </div>
           </Link>
         ))}
-        <Link to="/collections" className="collection-card-home">
-          <div className="collection-card-home-image">
-            <div className="collection-card-home-overlay" />
-            <div className="collection-card-placeholder-bg" style={{background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'}} />
-          </div>
-          <div className="collection-card-home-content">
-            <h3>New Arrivals</h3>
-            <span className="collection-card-home-link">Explore →</span>
-          </div>
-        </Link>
-        <Link to="/collections" className="collection-card-home">
-          <div className="collection-card-home-image">
-            <div className="collection-card-home-overlay" />
-            <div className="collection-card-placeholder-bg" style={{background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'}} />
-          </div>
-          <div className="collection-card-home-content">
-            <h3>Best Sellers</h3>
-            <span className="collection-card-home-link">Explore →</span>
-          </div>
-        </Link>
       </div>
     </section>
   );
@@ -439,7 +419,7 @@ const FEATURED_COLLECTION_QUERY = `#graphql
   }
   query FeaturedCollection($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    collections(first: 4, sortKey: UPDATED_AT, reverse: true) {
+    collections(first: 6, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...FeaturedCollection
       }
