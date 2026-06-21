@@ -3544,7 +3544,7 @@ button.reset:hover:not(:has(> *)) {
   filter: blur(120px);
   z-index: -1;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.45;
 }
 
 .contact-hero-blob--1 {
@@ -3552,7 +3552,7 @@ button.reset:hover:not(:has(> *)) {
   height: 500px;
   top: -180px;
   left: 25%;
-  background: hsla(239, 84%, 67%, 0.12);
+  background: hsla(239, 84%, 67%, 0.22);
   animation: blobFloat1 10s ease-in-out infinite;
 }
 
@@ -3561,7 +3561,7 @@ button.reset:hover:not(:has(> *)) {
   height: 350px;
   top: -80px;
   right: 15%;
-  background: hsla(271, 91%, 65%, 0.1);
+  background: hsla(271, 91%, 65%, 0.15);
   animation: blobFloat2 14s ease-in-out infinite;
 }
 
@@ -3570,7 +3570,7 @@ button.reset:hover:not(:has(> *)) {
   height: 400px;
   top: 60px;
   left: 55%;
-  background: hsla(326, 84%, 67%, 0.08);
+  background: hsla(239, 84%, 67%, 0.16);
   animation: blobFloat3 12s ease-in-out infinite;
 }
 
@@ -3579,7 +3579,7 @@ button.reset:hover:not(:has(> *)) {
   height: 280px;
   top: -40px;
   left: 10%;
-  background: hsla(199, 84%, 67%, 0.08);
+  background: hsla(199, 84%, 67%, 0.14);
   animation: blobFloat1 16s ease-in-out infinite;
   animation-delay: -5s;
 }
