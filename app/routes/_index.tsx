@@ -22,18 +22,23 @@ async function loadCriticalData({context}: Route.LoaderArgs) {
   const [featuredData, arrivalsData, shopData] = await Promise.all([
     context.storefront.query(FEATURED_COLLECTION_QUERY).catch(() => null),
     context.storefront.query(NEW_ARRIVALS_QUERY).catch(() => null),
-    context.storefront.query(SHOP_HERO_QUERY).catch(() => null),
+    context.storefront.query(SHOP_METAFIELDS_QUERY).catch((err) => {
+      console.error('SHOP_METAFIELDS_QUERY error:', err);
+      return null;
+    }),
   ]);
 
   const collections = featuredData?.collections?.nodes || [];
   const arrivals = arrivalsData?.products?.nodes || [];
   const heroImage = shopData?.shop?.heroImage?.reference?.image;
+  const brandStoryImage = shopData?.shop?.brandStoryImage?.reference?.image;
 
   return {
     featuredCollection: collections[0],
     featuredCollections: collections,
     newArrivals: arrivals.slice(0, 4),
     heroImage,
+    brandStoryImage,
   };
 }
 
@@ -61,7 +66,7 @@ export default function Homepage() {
       <Testimonials />
       <NewArrivals products={data.newArrivals} />
       <RecommendedProducts products={data.recommendedProducts} />
-      <BrandStory />
+      <BrandStory image={data.brandStoryImage} />
       <NewsletterSection />
     </div>
   );
@@ -335,16 +340,20 @@ function Testimonials() {
   );
 }
 
-function BrandStory() {
+function BrandStory({image}: {image?: FeaturedCollectionFragment["image"]}) {
   return (
     <section className="brand-story">
       <div className="brand-story-grid">
         <div className="brand-story-image">
-          <div className="brand-story-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
+          {image ? (
+            <Image data={image} sizes="(min-width: 45em) 50vw, 100vw" />
+          ) : (
+            <div className="brand-story-placeholder">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+          )}
         </div>
         <div className="brand-story-content">
           <span className="brand-story-label">Our Story</span>
@@ -478,11 +487,23 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
   }
 ` as const;
 
-const SHOP_HERO_QUERY = `#graphql
-  query ShopHero($country: CountryCode, $language: LanguageCode)
-    @inContext(country: $country, language: $language) {
+const SHOP_METAFIELDS_QUERY = `#graphql
+  query ShopMetafields {
     shop {
       heroImage: metafield(namespace: "custom", key: "hero") {
+        reference {
+          ... on MediaImage {
+            image {
+              id
+              url
+              altText
+              width
+              height
+            }
+          }
+        }
+      }
+      brandStoryImage: metafield(namespace: "custom", key: "brand_story_image") {
         reference {
           ... on MediaImage {
             image {
