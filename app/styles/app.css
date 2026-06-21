@@ -3646,68 +3646,6 @@ button.reset:hover:not(:has(> *)) {
 
 /* ─── Info Cards ──────────────────────────────────────────────────── */
 
-.contact-cards-wrap {
-  position: relative;
-  isolation: isolate;
-  margin-bottom: 80px;
-}
-
-.contact-cards-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.45;
-  animation: cardsBlobFloat 14s ease-in-out infinite;
-}
-
-.contact-cards-blob--a {
-  width: 600px;
-  height: 600px;
-  top: 20px;
-  left: -100px;
-  background: hsla(326, 90%, 67%, 0.22);
-  animation-delay: 0s;
-}
-
-.contact-cards-blob--b {
-  width: 500px;
-  height: 500px;
-  bottom: -80px;
-  right: -80px;
-  background: hsla(239, 84%, 67%, 0.2);
-  animation-delay: -5s;
-}
-
-.contact-cards-blob--c {
-  width: 450px;
-  height: 450px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: hsla(271, 85%, 67%, 0.18);
-  animation-delay: -9s;
-}
-
-@keyframes cardsBlobFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -40px) scale(1.12); }
-  50% { transform: translate(-25px, 25px) scale(0.92); }
-  75% { transform: translate(-35px, -15px) scale(1.06); }
-}
-
-.contact-cards-blob--c {
-  animation-name: cardsBlobFloatCenter;
-}
-
-@keyframes cardsBlobFloatCenter {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  25% { transform: translate(-40%, -60%) scale(1.15); }
-  50% { transform: translate(-60%, -40%) scale(0.9); }
-  75% { transform: translate(-35%, -55%) scale(1.08); }
-}
-
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4026,14 +3964,6 @@ button.reset:hover:not(:has(> *)) {
 /* ─── Responsive ──────────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
-  .contact-cards-wrap {
-    margin-bottom: 50px;
-  }
-
-  .contact-cards-blob--a { width: 300px; height: 300px; left: -40px; }
-  .contact-cards-blob--b { width: 250px; height: 250px; right: -30px; }
-  .contact-cards-blob--c { width: 200px; height: 200px; }
-
   .contact-cards {
     grid-template-columns: 1fr;
     gap: 14px;
