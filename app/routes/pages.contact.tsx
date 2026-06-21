@@ -21,7 +21,6 @@ export default function ContactPage() {
     <div className="contact">
       <ContactHero />
       <ContactCards />
-      <ContactFormSection />
       <ContactFAQ />
     </div>
   );
@@ -87,50 +86,6 @@ function ContactCards() {
         <h3>Call Us</h3>
         <p>+1 (555) 234-5678<br />Mon–Fri 9am–6pm PST</p>
         <Link to="#" className="contact-card-link">Schedule a call →</Link>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Form ────────────────────────────────────────────────────── */
-
-function ContactFormSection() {
-  return (
-    <section className="contact-form-section">
-      <div className="contact-form-wrap">
-        <div className="contact-form-header">
-          <h2 className="contact-form-title">Send us a message</h2>
-          <p className="contact-form-subtitle">
-            Fill out the form below and we'll get back to you within 24 hours.
-          </p>
-        </div>
-        <form className="contact-form-fields" onSubmit={(e) => e.preventDefault()}>
-          <div className="contact-field-row">
-            <label className="contact-field-float">
-              <input id="name" type="text" required placeholder=" " />
-              <span>Full name</span>
-            </label>
-            <label className="contact-field-float">
-              <input id="email" type="email" required placeholder=" " />
-              <span>Email address</span>
-            </label>
-          </div>
-          <label className="contact-field-float">
-            <input id="subject" type="text" required placeholder=" " />
-            <span>Subject</span>
-          </label>
-          <label className="contact-field-float">
-            <textarea id="message" rows={4} required placeholder=" " />
-            <span>Your message</span>
-          </label>
-          <button type="submit" className="contact-submit">
-            Send message
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg>
-          </button>
-        </form>
       </div>
     </section>
   );

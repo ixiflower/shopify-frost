@@ -179,17 +179,21 @@ button.reset:hover:not(:has(> *)) {
 */
 .header {
   align-items: center;
-  background: var(--bg-primary);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: hsla(0, 0%, 100%, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   display: flex;
   height: var(--header-height);
   padding: 0 1.5rem;
   position: sticky;
-  top: 0;
+  top: 12px;
   z-index: 10;
-  border-bottom: 1px solid var(--border-color);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  margin: 0 auto;
+  max-width: 1200px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
 }
 
 .header nav a {
@@ -203,10 +207,8 @@ button.reset:hover:not(:has(> *)) {
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--text-primary) 0%, #666 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .header-logo-icon {
@@ -4001,7 +4003,7 @@ button.reset:hover:not(:has(> *)) {
 .contact-field-float input,
 .contact-field-float textarea {
   width: 100%;
-  padding: 22px 0 10px;
+  padding: 22px 12px 10px;
   border: none;
   background: transparent;
   color: var(--text-primary);
@@ -4021,7 +4023,7 @@ button.reset:hover:not(:has(> *)) {
 .contact-field-float span {
   position: absolute;
   top: 16px;
-  left: 0;
+  left: 12px;
   font-size: 0.88rem;
   color: var(--text-secondary);
   pointer-events: none;
