@@ -32,8 +32,10 @@ export default function ContactPage() {
 function ContactHero() {
   return (
     <section className="contact-hero">
-      <div className="contact-hero-glow" />
-      <div className="contact-hero-blob" />
+      <div className="contact-hero-blob contact-hero-blob--1" />
+      <div className="contact-hero-blob contact-hero-blob--2" />
+      <div className="contact-hero-blob contact-hero-blob--3" />
+      <div className="contact-hero-blob contact-hero-blob--4" />
       <span className="contact-hero-tag">Contact</span>
       <h1 className="contact-hero-heading">
         We'd love to<br />

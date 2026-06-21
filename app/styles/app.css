@@ -3538,32 +3538,71 @@ button.reset:hover:not(:has(> *)) {
   isolation: isolate;
 }
 
-.contact-hero-glow {
-  position: absolute;
-  inset: -50% 0 -20%;
-  z-index: -2;
-  background:
-    radial-gradient(600px 400px at 30% 0%, hsla(239, 84%, 67%, 0.08), transparent),
-    radial-gradient(500px 400px at 70% 0%, hsla(271, 91%, 65%, 0.06), transparent);
-}
-
 .contact-hero-blob {
   position: absolute;
-  width: 500px;
-  height: 500px;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
-  background: hsla(239, 84%, 67%, 0.04);
+  border-radius: 50%;
+  filter: blur(80px);
   z-index: -1;
-  animation: contactBlob 12s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-@keyframes contactBlob {
-  0%, 100% { border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%; transform: translateX(-50%) scale(1); }
-  33% { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; transform: translateX(-50%) scale(1.08); }
-  66% { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; transform: translateX(-50%) scale(0.95); }
+.contact-hero-blob--1 {
+  width: 500px;
+  height: 500px;
+  top: -180px;
+  left: 25%;
+  background: hsla(239, 84%, 67%, 0.18);
+  animation: blobFloat1 10s ease-in-out infinite;
+}
+
+.contact-hero-blob--2 {
+  width: 350px;
+  height: 350px;
+  top: -80px;
+  right: 15%;
+  background: hsla(271, 91%, 65%, 0.15);
+  animation: blobFloat2 14s ease-in-out infinite;
+}
+
+.contact-hero-blob--3 {
+  width: 400px;
+  height: 400px;
+  top: 60px;
+  left: 55%;
+  background: hsla(326, 84%, 67%, 0.12);
+  animation: blobFloat3 12s ease-in-out infinite;
+}
+
+.contact-hero-blob--4 {
+  width: 280px;
+  height: 280px;
+  top: -40px;
+  left: 10%;
+  background: hsla(199, 84%, 67%, 0.12);
+  animation: blobFloat1 16s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, -30px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(-30px, -15px) scale(1.05); }
+}
+
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-50px, 20px) scale(1.12); }
+  50% { transform: translate(20px, -40px) scale(0.9); }
+  75% { transform: translate(35px, 10px) scale(1.08); }
+}
+
+@keyframes blobFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, 30px) scale(1.08); }
+  50% { transform: translate(-40px, -20px) scale(0.96); }
+  75% { transform: translate(10px, -35px) scale(1.04); }
 }
 
 .contact-hero-tag {
@@ -3944,11 +3983,10 @@ button.reset:hover:not(:has(> *)) {
     padding: 60px 0 50px;
   }
 
-  .contact-hero-blob {
-    width: 280px;
-    height: 280px;
-    top: -60px;
-  }
+  .contact-hero-blob--1 { width: 280px; height: 280px; top: -100px; left: 10%; }
+  .contact-hero-blob--2 { width: 200px; height: 200px; top: -40px; right: 5%; }
+  .contact-hero-blob--3 { width: 220px; height: 220px; top: 30px; left: 40%; }
+  .contact-hero-blob--4 { width: 160px; height: 160px; top: -20px; left: -5%; }
 
   .contact-hero-heading {
     font-size: 2.2rem;
