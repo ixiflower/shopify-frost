@@ -70,8 +70,18 @@ export default function Collection() {
 
   return (
     <div className="collection">
-      <h1>{collection.title}</h1>
-      <p className="collection-description">{collection.description}</p>
+      {collection.image && (
+        <div className="collection-hero">
+          <img src={collection.image.url} alt={collection.title} className="collection-hero-img" />
+          <div className="collection-hero-overlay" />
+        </div>
+      )}
+      <div className="collection-header">
+        <h1>{collection.title}</h1>
+        {collection.description && (
+          <p className="collection-description">{collection.description}</p>
+        )}
+      </div>
       <PaginatedResourceSection<ProductItemFragment>
         connection={collection.products}
         resourcesClassName="products-grid"
@@ -141,6 +151,13 @@ const COLLECTION_QUERY = `#graphql
       handle
       title
       description
+      image {
+        id
+        url
+        altText
+        width
+        height
+      }
       products(
         first: $first,
         last: $last,
