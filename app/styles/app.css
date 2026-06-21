@@ -1092,6 +1092,42 @@ button.reset:hover:not(:has(> *)) {
   color: inherit;
 }
 
+.featured-collection::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 23px;
+  z-index: 3;
+  padding: 3px;
+  background: linear-gradient(
+    135deg,
+    hsla(0, 80%, 60%, 0.6),
+    hsla(350, 75%, 55%, 0.4),
+    hsla(10, 85%, 65%, 0.6),
+    hsla(340, 70%, 50%, 0.4),
+    hsla(0, 80%, 60%, 0.6)
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: heroBorderGlow 4s ease-in-out infinite;
+  filter: blur(1px);
+  opacity: 0.7;
+  transition: opacity 0.4s, filter 0.4s;
+  pointer-events: none;
+}
+
+.featured-collection:hover::before {
+  opacity: 1;
+  filter: blur(2px);
+}
+
+@keyframes heroBorderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 .featured-collection:hover {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
@@ -3542,7 +3578,7 @@ button.reset:hover:not(:has(> *)) {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
   opacity: 0.45;
 }
@@ -3618,6 +3654,8 @@ button.reset:hover:not(:has(> *)) {
   margin-bottom: 24px;
   backdrop-filter: blur(8px);
   border: 1px solid hsla(239, 84%, 67%, 0.15);
+  position: relative;
+  z-index: 2;
 }
 
 .contact-hero-heading {
@@ -3627,6 +3665,8 @@ button.reset:hover:not(:has(> *)) {
   letter-spacing: -0.025em;
   color: var(--text-primary);
   margin: 0 0 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-hero-accent {
@@ -3642,6 +3682,8 @@ button.reset:hover:not(:has(> *)) {
   max-width: 520px;
   margin: 0 auto;
   line-height: 1.7;
+  position: relative;
+  z-index: 2;
 }
 
 /* ─── Info Cards ──────────────────────────────────────────────────── */
@@ -3662,6 +3704,7 @@ button.reset:hover:not(:has(> *)) {
   padding: 32px 28px;
   transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
   position: relative;
+  z-index: 2;
   overflow: hidden;
 }
 
@@ -3876,18 +3919,45 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .contact-faq-item {
-  background: hsla(239, 84%, 67%, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--bg-secondary);
   border: none;
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.contact-faq-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    hsla(239, 84%, 67%, 0.08),
+    hsla(271, 91%, 65%, 0.05),
+    hsla(199, 84%, 67%, 0.06),
+    hsla(239, 84%, 67%, 0.08)
+  );
+  background-size: 300% 300%;
+  animation: faqGradient 6s ease-in-out infinite;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 0.4s;
+}
+
+.contact-faq-item:hover::before,
+.contact-faq-item[open]::before {
+  opacity: 1;
+}
+
+@keyframes faqGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .contact-faq-item[open] {
-  background: hsla(239, 84%, 67%, 0.06);
-  box-shadow: 0 4px 24px hsla(239, 84%, 67%, 0.08);
+  box-shadow: 0 4px 24px hsla(239, 84%, 67%, 0.06);
 }
 
 .contact-faq-question {
@@ -3902,6 +3972,8 @@ button.reset:hover:not(:has(> *)) {
   list-style: none;
   user-select: none;
   transition: color 0.2s;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-faq-question::-webkit-details-marker {
@@ -3929,13 +4001,14 @@ button.reset:hover:not(:has(> *)) {
   color: var(--text-secondary);
   line-height: 1.7;
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Dark Mode ───────────────────────────────────────────────────── */
 
 [data-theme='dark'] .contact-card,
-[data-theme='dark'] .contact-form-wrap,
-[data-theme='dark'] .contact-faq-item {
+[data-theme='dark'] .contact-form-wrap {
   background: hsla(239, 84%, 67%, 0.05);
 }
 
