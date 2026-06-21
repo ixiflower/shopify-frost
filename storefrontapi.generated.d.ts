@@ -489,6 +489,35 @@ export type RecommendedProductsQuery = {
   };
 };
 
+export type ShopMetafieldsQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type ShopMetafieldsQuery = {
+  shop: {
+    heroImage?: StorefrontAPI.Maybe<{
+      reference?: StorefrontAPI.Maybe<{
+        image?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'url' | 'altText' | 'width' | 'height'
+          >
+        >;
+      }>;
+    }>;
+    brandStoryImage?: StorefrontAPI.Maybe<{
+      reference?: StorefrontAPI.Maybe<{
+        image?: StorefrontAPI.Maybe<
+          Pick<
+            StorefrontAPI.Image,
+            'id' | 'url' | 'altText' | 'width' | 'height'
+          >
+        >;
+      }>;
+    }>;
+  };
+};
+
 export type MoneyProductItemFragment = Pick<
   StorefrontAPI.MoneyV2,
   'amount' | 'currencyCode'
@@ -674,6 +703,17 @@ export type PageQuery = {
         Pick<StorefrontAPI.Seo, 'description' | 'title'>
       >;
     }
+  >;
+};
+
+export type ContactPageQueryVariables = StorefrontAPI.Exact<{
+  language?: StorefrontAPI.InputMaybe<StorefrontAPI.LanguageCode>;
+  country?: StorefrontAPI.InputMaybe<StorefrontAPI.CountryCode>;
+}>;
+
+export type ContactPageQuery = {
+  page?: StorefrontAPI.Maybe<
+    Pick<StorefrontAPI.Page, 'handle' | 'id' | 'title' | 'body'>
   >;
 };
 
@@ -1260,6 +1300,10 @@ interface GeneratedQueryTypes {
     return: RecommendedProductsQuery;
     variables: RecommendedProductsQueryVariables;
   };
+  '#graphql\n  query ShopMetafields {\n    shop {\n      heroImage: metafield(namespace: "custom", key: "hero") {\n        reference {\n          ... on MediaImage {\n            image {\n              id\n              url\n              altText\n              width\n              height\n            }\n          }\n        }\n      }\n      brandStoryImage: metafield(namespace: "custom", key: "brand_story_image") {\n        reference {\n          ... on MediaImage {\n            image {\n              id\n              url\n              altText\n              width\n              height\n            }\n          }\n        }\n      }\n    }\n  }\n': {
+    return: ShopMetafieldsQuery;
+    variables: ShopMetafieldsQueryVariables;
+  };
   '#graphql\n  #graphql\n  fragment MoneyProductItem on MoneyV2 {\n    amount\n    currencyCode\n  }\n  fragment ProductItem on Product {\n    id\n    handle\n    title\n    description\n    featuredImage {\n      id\n      altText\n      url\n      width\n      height\n    }\n    priceRange {\n      minVariantPrice {\n        ...MoneyProductItem\n      }\n      maxVariantPrice {\n        ...MoneyProductItem\n      }\n    }\n  }\n\n  query Collection(\n    $handle: String!\n    $country: CountryCode\n    $language: LanguageCode\n    $first: Int\n    $last: Int\n    $startCursor: String\n    $endCursor: String\n  ) @inContext(country: $country, language: $language) {\n    collection(handle: $handle) {\n      id\n      handle\n      title\n      description\n      products(\n        first: $first,\n        last: $last,\n        before: $startCursor,\n        after: $endCursor\n      ) {\n        nodes {\n          ...ProductItem\n        }\n        pageInfo {\n          hasPreviousPage\n          hasNextPage\n          endCursor\n          startCursor\n        }\n      }\n    }\n  }\n': {
     return: CollectionQuery;
     variables: CollectionQueryVariables;
@@ -1275,6 +1319,10 @@ interface GeneratedQueryTypes {
   '#graphql\n  query Page(\n    $language: LanguageCode,\n    $country: CountryCode,\n    $handle: String!\n  )\n  @inContext(language: $language, country: $country) {\n    page(handle: $handle) {\n      handle\n      id\n      title\n      body\n      seo {\n        description\n        title\n      }\n    }\n  }\n': {
     return: PageQuery;
     variables: PageQueryVariables;
+  };
+  '#graphql\n  query ContactPage($language: LanguageCode, $country: CountryCode)\n    @inContext(language: $language, country: $country) {\n    page(handle: "contact") {\n      handle\n      id\n      title\n      body\n    }\n  }\n': {
+    return: ContactPageQuery;
+    variables: ContactPageQueryVariables;
   };
   '#graphql\n  fragment Policy on ShopPolicy {\n    body\n    handle\n    id\n    title\n    url\n  }\n  query Policy(\n    $country: CountryCode\n    $language: LanguageCode\n    $privacyPolicy: Boolean!\n    $refundPolicy: Boolean!\n    $shippingPolicy: Boolean!\n    $termsOfService: Boolean!\n  ) @inContext(language: $language, country: $country) {\n    shop {\n      privacyPolicy @include(if: $privacyPolicy) {\n        ...Policy\n      }\n      shippingPolicy @include(if: $shippingPolicy) {\n        ...Policy\n      }\n      termsOfService @include(if: $termsOfService) {\n        ...Policy\n      }\n      refundPolicy @include(if: $refundPolicy) {\n        ...Policy\n      }\n    }\n  }\n': {
     return: PolicyQuery;
