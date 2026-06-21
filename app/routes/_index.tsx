@@ -482,7 +482,7 @@ const SHOP_HERO_QUERY = `#graphql
   query ShopHero($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
     shop {
-      heroImage: metafield(namespace: "custom", key: "hero_image") {
+      heroImage: metafield(namespace: "custom", key: "hero") {
         reference {
           ... on MediaImage {
             image {
