@@ -53,8 +53,12 @@ function ContactHero() {
 
 function ContactCards() {
   return (
-    <section className="contact-cards">
-      <div className="contact-card">
+    <section className="contact-cards-wrap">
+      <div className="contact-cards-blob contact-cards-blob--a" />
+      <div className="contact-cards-blob contact-cards-blob--b" />
+      <div className="contact-cards-blob contact-cards-blob--c" />
+      <div className="contact-cards">
+        <div className="contact-card">
         <div className="contact-card-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -87,6 +91,7 @@ function ContactCards() {
         <h3>Call Us</h3>
         <p>+1 (555) 234-5678<br />Mon–Fri 9am–6pm PST</p>
         <Link to="#" className="contact-card-link">Schedule a call →</Link>
+        </div>
       </div>
     </section>
   );
