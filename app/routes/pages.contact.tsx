@@ -106,25 +106,25 @@ function ContactFormSection() {
         </div>
         <form className="contact-form-fields" onSubmit={(e) => e.preventDefault()}>
           <div className="contact-field-row">
-            <div className="contact-field">
-              <label htmlFor="name">Name</label>
-              <input id="name" type="text" placeholder="Alex Johnson" required />
-            </div>
-            <div className="contact-field">
-              <label htmlFor="email">Email</label>
-              <input id="email" type="email" placeholder="alex@example.com" required />
-            </div>
+            <label className="contact-field-float">
+              <input id="name" type="text" required placeholder=" " />
+              <span>Full name</span>
+            </label>
+            <label className="contact-field-float">
+              <input id="email" type="email" required placeholder=" " />
+              <span>Email address</span>
+            </label>
           </div>
-          <div className="contact-field">
-            <label htmlFor="subject">Subject</label>
-            <input id="subject" type="text" placeholder="How can we help?" required />
-          </div>
-          <div className="contact-field">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" rows={5} placeholder="Tell us about your inquiry..." required />
-          </div>
+          <label className="contact-field-float">
+            <input id="subject" type="text" required placeholder=" " />
+            <span>Subject</span>
+          </label>
+          <label className="contact-field-float">
+            <textarea id="message" rows={4} required placeholder=" " />
+            <span>Your message</span>
+          </label>
           <button type="submit" className="contact-submit">
-            <span>Send Message</span>
+            Send message
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="22" y1="2" x2="11" y2="13" />
               <polygon points="22 2 15 22 11 13 2 9 22 2" />
