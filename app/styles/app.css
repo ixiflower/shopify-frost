@@ -402,7 +402,234 @@ button.reset:hover:not(:has(> *)) {
 * components/Cart
 * --------------------------------------------------
 */
-/* ─── Cart Page — Modern Responsive ──────────────────────────────────── */
+/* ─── Cart Aside (Drawer) ──────────────────────────────────────── */
+
+.cart-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cart-lines {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.5rem 1.25rem;
+  margin: 0;
+}
+
+.cart-line {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.cart-line:last-child {
+  border-bottom: none;
+}
+
+.cart-line-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cart-line-inner img {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cart-line-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cart-line-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-line-variant {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.cart-line-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.cart-line-right .product-price {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.cart-line-qty {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart-line-qty button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+}
+
+.cart-line-qty button:hover:not(:disabled) {
+  background: rgba(128, 128, 128, 0.06);
+  color: var(--text-primary);
+}
+
+.cart-line-qty button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.cart-line-qty-num {
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-line-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.4;
+}
+
+.cart-line-remove:hover:not(:disabled) {
+  color: #ef4444;
+  opacity: 1;
+}
+
+.cart-line-remove:disabled {
+  opacity: 0.15;
+  cursor: default;
+}
+
+.cart-line-children {
+  padding-left: 2.5rem;
+  margin: 0.5rem 0 0;
+}
+
+.cart-summary-aside {
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cart-summary-price {
+  font-weight: 600;
+}
+
+.cart-summary-note {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.cart-checkout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-accent, #6366f1);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.cart-checkout-btn:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  height: 100%;
+}
+
+.cart-empty svg {
+  opacity: 0.3;
+}
+
+.cart-empty p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cart-empty a {
+  font-size: 0.85rem;
+  color: var(--color-accent, #6366f1);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cart-empty a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Cart Page (Full Page Layout) ───── */
 
 .cart-page {
   max-width: 1280px;
