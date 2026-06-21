@@ -1087,9 +1087,10 @@ button.reset:hover:not(:has(> *)) {
   border-radius: 20px;
   overflow: hidden;
   box-shadow:
-    0 0 80px 20px hsla(239, 84%, 67%, 0.15),
+    0 0 80px 20px hsla(0, 75%, 60%, 0.12),
     0 4px 16px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.5s ease;
+  animation: heroGlow 4s ease-in-out infinite;
   text-decoration: none;
   color: inherit;
 }
@@ -1130,9 +1131,15 @@ button.reset:hover:not(:has(> *)) {
   50% { background-position: 100% 50%; }
 }
 
+@keyframes heroGlow {
+  0%, 100% { box-shadow: 0 0 60px 15px hsla(0, 75%, 60%, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06); }
+  50% { box-shadow: 0 0 100px 30px hsla(0, 75%, 60%, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06); }
+}
+
 .featured-collection:hover {
+  animation: none;
   box-shadow:
-    0 0 120px 40px hsla(239, 84%, 67%, 0.2),
+    0 0 140px 50px hsla(0, 75%, 60%, 0.2),
     0 16px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -2767,6 +2774,12 @@ button.reset:hover:not(:has(> *)) {
   margin-bottom: 4rem;
   overflow: hidden;
   position: relative;
+}
+
+.testimonials-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -2781,12 +2794,6 @@ button.reset:hover:not(:has(> *)) {
     black 90%,
     transparent 100%
   );
-}
-
-.testimonials-scroll {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .testimonials-track {
