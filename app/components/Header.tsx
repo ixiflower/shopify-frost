@@ -38,6 +38,7 @@ export function Header({
         viewport="desktop"
         primaryDomainUrl={header.shop.primaryDomain.url}
         publicStoreDomain={publicStoreDomain}
+        isLoggedIn={isLoggedIn}
       />
       <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
     </header>
@@ -49,11 +50,13 @@ export function HeaderMenu({
   primaryDomainUrl,
   viewport,
   publicStoreDomain,
+  isLoggedIn,
 }: {
   menu: HeaderProps['header']['menu'];
   primaryDomainUrl: HeaderProps['header']['shop']['primaryDomain']['url'];
   viewport: Viewport;
   publicStoreDomain: HeaderProps['publicStoreDomain'];
+  isLoggedIn?: Promise<boolean>;
 }) {
   const className = `header-menu-${viewport}`;
   const {close} = useAside();
@@ -61,15 +64,18 @@ export function HeaderMenu({
   return (
     <nav className={className} role="navigation">
       {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          Home
-        </NavLink>
+        <>
+          <NavLink
+            end
+            onClick={close}
+            prefetch="intent"
+            style={activeLinkStyle}
+            to="/"
+          >
+            Home
+          </NavLink>
+          <hr className="header-menu-divider" />
+        </>
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
         if (!item.url) return null;
@@ -95,6 +101,45 @@ export function HeaderMenu({
           </NavLink>
         );
       })}
+      {viewport === 'mobile' && (
+        <>
+          <hr className="header-menu-divider" />
+          <Suspense fallback={null}>
+            <Await resolve={isLoggedIn} errorElement={null}>
+              {(loggedIn) => (
+                <>
+                  {!loggedIn ? (
+                    <NavLink
+                      className="header-menu-item header-menu-auth-link"
+                      end
+                      onClick={close}
+                      prefetch="intent"
+                      style={activeLinkStyle}
+                      to="/account/login"
+                    >
+                      Register
+                    </NavLink>
+                  ) : null}
+                  <NavLink
+                    className="header-menu-item header-menu-auth-link"
+                    end
+                    onClick={close}
+                    prefetch="intent"
+                    style={activeLinkStyle}
+                    to="/account"
+                  >
+                    <Suspense fallback="Sign in">
+                      <Await resolve={isLoggedIn} errorElement="Sign in">
+                        {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+                      </Await>
+                    </Suspense>
+                  </NavLink>
+                </>
+              )}
+            </Await>
+          </Suspense>
+        </>
+      )}
     </nav>
   );
 }
@@ -106,24 +151,26 @@ function HeaderCtas({
   return (
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
-      <Suspense fallback={null}>
-        <Await resolve={isLoggedIn} errorElement={null}>
-          {(loggedIn) =>
-            !loggedIn ? (
-              <NavLink prefetch="intent" to="/account/login" style={activeLinkStyle}>
-                Register
-              </NavLink>
-            ) : null
-          }
-        </Await>
-      </Suspense>
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
-        <Suspense fallback="Sign in">
-          <Await resolve={isLoggedIn} errorElement="Sign in">
-            {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+      <div className="header-ctas-auth">
+        <Suspense fallback={null}>
+          <Await resolve={isLoggedIn} errorElement={null}>
+            {(loggedIn) =>
+              !loggedIn ? (
+                <NavLink prefetch="intent" to="/account/login" style={activeLinkStyle}>
+                  Register
+                </NavLink>
+              ) : null
+            }
           </Await>
         </Suspense>
-      </NavLink>
+        <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+          <Suspense fallback="Sign in">
+            <Await resolve={isLoggedIn} errorElement="Sign in">
+              {(isLoggedIn) => (isLoggedIn ? 'Account' : 'Sign in')}
+            </Await>
+          </Suspense>
+        </NavLink>
+      </div>
       <CartToggle cart={cart} />
     </nav>
   );
