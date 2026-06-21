@@ -43,7 +43,11 @@ export const middleware: MiddlewareFunction[] = [
     ctx.env = h2.env;
     ctx.session = h2.session;
     ctx.waitUntil = h2.waitUntil ?? (() => {});
-    return next();
+    const response = await next();
+    if (h2.session.isPending) {
+      response.headers.append('Set-Cookie', await h2.session.commit());
+    }
+    return response;
   },
 ];
 
