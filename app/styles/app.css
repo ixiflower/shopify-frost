@@ -1086,8 +1086,10 @@ button.reset:hover:not(:has(> *)) {
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
+  box-shadow:
+    0 0 80px 20px hsla(239, 84%, 67%, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.5s ease;
   text-decoration: none;
   color: inherit;
 }
@@ -1129,7 +1131,9 @@ button.reset:hover:not(:has(> *)) {
 }
 
 .featured-collection:hover {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 0 120px 40px hsla(239, 84%, 67%, 0.2),
+    0 16px 40px rgba(0, 0, 0, 0.1);
 }
 
 .featured-collection-image {
@@ -2762,6 +2766,21 @@ button.reset:hover:not(:has(> *)) {
 .testimonials {
   margin-bottom: 4rem;
   overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
 }
 
 .testimonials-scroll {
