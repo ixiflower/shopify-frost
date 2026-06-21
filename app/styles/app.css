@@ -190,8 +190,8 @@ button.reset:hover:not(:has(> *)) {
   position: sticky;
   top: 12px;
   z-index: 10;
-  margin: 0 auto;
-  max-width: 1200px;
+  margin: 0 12px;
+  width: calc(100% - 24px);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.3s ease;
 }
