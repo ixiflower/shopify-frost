@@ -3948,7 +3948,7 @@ button.reset:hover:not(:has(> *)) {
   background: var(--bg-secondary);
   border: none;
   border-radius: 24px;
-  padding: 48px;
+  padding: 48px 56px;
   max-width: 640px;
   margin: 0 auto;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.03);
@@ -4055,7 +4055,7 @@ button.reset:hover:not(:has(> *)) {
   font-family: inherit;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-  align-self: flex-start;
+  align-self: center;
   box-shadow: 0 2px 8px hsla(0, 0%, 0%, 0.08);
 }
 
