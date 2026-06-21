@@ -182,20 +182,6 @@ export function Layout({children}: {children?: React.ReactNode}) {
         <link rel="stylesheet" href={appStyles}></link>
         <Meta />
         <Links />
-        <script nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var t = localStorage.getItem('theme');
-                  if (t === 'dark' || (t === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
       </head>
       <body>
         {children}
