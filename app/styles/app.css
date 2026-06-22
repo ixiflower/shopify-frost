@@ -2113,44 +2113,95 @@ button.reset:hover:not(:has(> *)) {
 
 /* ── Responsive ────────────────────────── */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .account-layout {
     flex-direction: column;
-    padding: 20px 16px;
-    gap: 20px;
+    padding: 16px;
+    gap: 16px;
   }
 
   .account-sidebar {
     width: 100%;
     position: static;
+    top: auto;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 12px;
-    gap: 4px;
-    top: auto;
+    align-items: center;
+    gap: 0;
+    padding: 10px 14px;
+    border-radius: 14px;
   }
 
   .account-sidebar-user {
-    width: 100%;
-    padding: 0 8px 10px;
-    margin-bottom: 2px;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    border: none;
+    flex-shrink: 0;
+  }
+
+  .account-sidebar-avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  .account-sidebar-greeting {
+    display: none;
   }
 
   .account-sidebar-nav {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 2px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0 8px;
+    flex: 1;
   }
 
-  .account-sidebar-footer {
-    width: 100%;
-    border-top: none;
-    padding-top: 0;
+  .account-sidebar-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .account-sidebar-link {
-    padding: 8px 12px;
-    font-size: 0.83rem;
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    gap: 6px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .account-sidebar-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .account-sidebar-footer {
+    width: auto;
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .account-sidebar-signout {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    width: auto;
+    gap: 6px;
+    border-radius: 8px;
+  }
+
+  .account-sidebar-signout svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .account-content {
+    flex: none;
+    width: 100%;
   }
 }
 
@@ -2505,23 +2556,33 @@ button.reset:hover:not(:has(> *)) {
 
 /* ── Responsive ────────────────────────── */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .orders-page {
+    max-width: none;
     padding: 0;
   }
 
   .orders-header {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .orders-heading {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .orders-subtitle {
+    font-size: 0.83rem;
+  }
+
+  .orders-search {
+    margin-bottom: 20px;
   }
 
   .orders-search-inner {
     flex-wrap: wrap;
-    padding: 10px;
-    gap: 8px;
+    padding: 8px;
+    gap: 6px;
+    border-radius: 12px;
   }
 
   .orders-search-icon {
@@ -2531,54 +2592,127 @@ button.reset:hover:not(:has(> *)) {
   .orders-search-input {
     width: 100%;
     flex: none;
-    padding: 10px 0;
-    font-size: 1rem;
+    padding: 8px 4px;
+    font-size: 0.9rem;
   }
 
   .orders-search-actions {
     width: 100%;
-    justify-content: flex-end;
+    justify-content: stretch;
+    display: flex;
+    gap: 6px;
+  }
+
+  .orders-search-btn {
+    flex: 1;
+    text-align: center;
+    padding: 9px 14px;
+    font-size: 0.83rem;
+    border-radius: 10px;
+  }
+
+  .orders-search-clear {
+    flex: 1;
+    text-align: center;
+    padding: 9px 14px;
+    font-size: 0.83rem;
+    border-radius: 10px;
+  }
+
+  .orders-list {
+    gap: 10px;
+  }
+
+  .order-card {
+    border-radius: 14px;
   }
 
   .order-card-top {
     flex-direction: column;
     align-items: flex-start;
-    padding: 14px 16px 0;
+    padding: 14px 14px 0;
+    gap: 8px;
   }
 
   .order-card-left {
     flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .order-card-number {
+    font-size: 0.95rem;
   }
 
   .order-card-confirmation {
     max-width: 100%;
+    font-size: 0.72rem;
   }
 
   .order-card-badges {
     flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .order-status {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .order-fulfill {
+    font-size: 0.7rem;
+    padding: 2px 8px;
   }
 
   .order-card-body {
     flex-wrap: wrap;
-    gap: 14px;
-    padding: 12px 16px 0;
+    gap: 10px;
+    padding: 10px 14px 0;
+  }
+
+  .order-card-info {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .order-card-label {
+    font-size: 0.7rem;
+  }
+
+  .order-card-value {
+    font-size: 0.83rem;
   }
 
   .order-card-footer {
-    padding: 12px 16px 14px;
+    padding: 10px 14px 12px;
+  }
+
+  .order-card-view {
+    font-size: 0.82rem;
   }
 
   .orders-empty {
     padding: 40px 16px;
   }
-}
 
-@media (max-width: 480px) {
-  .orders-search-btn,
-  .orders-search-clear {
-    flex: 1;
-    justify-content: center;
-    text-align: center;
+  .orders-empty-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .orders-empty-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .orders-empty-text {
+    font-size: 0.88rem;
+  }
+
+  .orders-empty-btn {
+    padding: 9px 20px;
+    font-size: 0.83rem;
+    border-radius: 10px;
   }
 }
 
